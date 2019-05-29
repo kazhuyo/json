@@ -37,12 +37,9 @@ class _CategoryListDetailState extends State<CategoryListDetail> {
           } else if (widget.category.categoryPost.length > 0) {
             return InkWell(
               onTap: () {
-                // print(widget.category.doa[index].detailDoa[index].ayatdoa);
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => PostDetailContent(
                         detail: widget.category.categoryPost[index],
-                        // doaDetail: widget.category.doa[index].detailDoa[index],
-                        // doa: widget.category.doa[index].detailDoa[index],
                       ),
                 ));
               },

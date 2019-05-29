@@ -19,8 +19,8 @@ class _PostDetailContentState extends State<PostDetailContent> {
       ),
       body: Container(
         child: 
-        new Text("I want to load here as list from postContent"),
-        // getPosts(),
+        // new Text("I want to load here as list from postContent"),
+        getPosts(),
       ),
     );
   }
@@ -29,11 +29,17 @@ class _PostDetailContentState extends State<PostDetailContent> {
     ListView detailPosts = new ListView.builder(
         itemCount: widget.detail.postContent.length,
         itemBuilder: (context, index) {
-          return Row(
+          return Column(
             children: <Widget>[
               new Text(
-                widget.detail.postTitle
-              )
+                widget.detail.postContent[index].content,
+                textAlign: TextAlign.center,
+              ),
+              new Text(
+                widget.detail.postContent[index].note,
+                textAlign: TextAlign.center,
+              ),
+              
             ],
           );
         });
