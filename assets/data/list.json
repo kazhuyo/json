@@ -1,0 +1,101 @@
+{
+    "response": "200",
+    "categorylist": [
+        {
+            "categoryId": 1,
+            "categoryTitle": "Working",
+            "categoryPost": [
+                {
+                    "postId": 1,
+                    "postTitle": "Some Working Title",
+                    "reference": "Some Working Reference",
+                    "postContent": [
+                        {
+                            "contentId": 1,
+                            "author": "Some Author Name 1",
+                            "content": "Some long content long content long content 1",
+                            "note": "Some notes 1",
+                            "explanation": "Some Explanation 1"
+                        },
+                        {
+                            "contentId": 2,
+                            "author": "Some Author Name 2",
+                            "content": "Some long content long content long content 2",
+                            "note": "Some notes 2",
+                            "explanation": "Some Explanation 2"
+                        }
+                    ]
+                },
+                {
+                    "postId": 2,
+                    "postTitle": "Some Title 2",
+                    "reference": "Some reference 2",
+                    "postContent": [
+                        {
+                            "contentId": 1,
+                            "author": "Some Author Name 1",
+                            "content": "Some long content long content long content 1",
+                            "note": "Some notes 1",
+                            "explanation": "Some Explanation 1"
+                        },
+                        {
+                            "contentId": 2,
+                            "author": "Some Author Name 2",
+                            "content": "Some long content long content long content 2",
+                            "note": "Some notes 2",
+                            "explanation": "Some Explanation 2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "categoryId": 2,
+            "categoryTitle": "Order",
+            "categoryPost": [
+                {
+                    "postId": 1,
+                    "postTitle": "Some Order Title",
+                    "reference": "Some Order Reference",
+                    "postContent": [
+                        {
+                            "contentId": 1,
+                            "author": "Some Author Name 1",
+                            "content": "Some long content long content long content 1",
+                            "note": "Some notes 1",
+                            "explanation": "Some Explanation 1"
+                        },
+                        {
+                            "contentId": 2,
+                            "author": "Some Author Name 2",
+                            "content": "Some long content long content long content 2",
+                            "note": "Some notes 2",
+                            "explanation": "Some Explanation 2"
+                        }
+                    ]
+                },
+                {
+                    "postId": 2,
+                    "postTitle": "Some Title 2",
+                    "reference": "Some reference 2",
+                    "postContent": [
+                        {
+                            "contentId": 1,
+                            "author": "Some Author Name 1",
+                            "content": "Some long content long content long content 1",
+                            "note": "Some notes 1",
+                            "explanation": "Some Explanation 1"
+                        },
+                        {
+                            "contentId": 2,
+                            "author": "Some Author Name 2",
+                            "content": "Some long content long content long content 2",
+                            "note": "Some notes 2",
+                            "explanation": "Some Explanation 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
