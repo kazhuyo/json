@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:json/list_category.dart';
+import 'package:json/test_schedule_notif.dart';
 
 void main() => runApp(new MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: new ListCategory(),
+      home: new ScheduleNotif(),
     );
   }
 }

@@ -1,0 +1,65 @@
+{
+    "response": "200",
+    "timezone": "DKI Jakarta",
+    "debug": {
+        "sunrise": "05:55",
+        "sunset": "17:47"
+    },
+    "date": "2019-06-04",
+    "time": "09:03:33",
+    "hijriyah": "17 Ramadhan 1440",
+    "jadwal": [
+        {
+            "id": 1,
+            "name": "Tahajjud",
+            "time": "00:53",
+            "image": "Image 1"
+        },
+        {
+            "id": 2,
+            "name": "Imsak",
+            "time": "04:25",
+            "image": "Image 2"
+        },
+        {
+            "id": 3,
+            "name": "Fajr",
+            "time": "04:37",
+            "image": "Image 3"
+        },
+        {
+            "id": 4,
+            "name": "Sunrise",
+            "time": "05:55",
+            "image": "Image 4"
+        },
+        {
+            "id": 5,
+            "name": "Dhuhr",
+            "time": "11:51",
+            "image": "Image 5"
+        },
+        {
+            "id": 6,
+            "name": "Asr",
+            "time": "15:13",
+            "image": "Image 6"
+        },
+        {
+            "id": 7,
+            "name": "Maghrib",
+            "time": "17:44",
+            "image": "Image 7"
+        },
+        {
+            "id": 8,
+            "name": "Isha",
+            "time": "18:57",
+            "image": "Image 8"
+        }
+    ],
+    "location": {
+        "latitude": "-6.1744651000",
+        "longitude": "106.8227450000"
+    }
+}

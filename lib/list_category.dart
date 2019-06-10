@@ -1,10 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:json/list_category_detail.dart';
 import 'package:json/model.dart';
-// import 'package:json/list_category_detail.dart';
 
 
 Future<String> _loadCategoryfromAssets() async {

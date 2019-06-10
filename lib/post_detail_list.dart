@@ -13,6 +13,7 @@ class _PostDetailContentState extends State<PostDetailContent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
+        centerTitle: false,
         title: new Text(
           widget.detail.postTitle
           ),
@@ -33,11 +34,11 @@ class _PostDetailContentState extends State<PostDetailContent> {
             children: <Widget>[
               new Text(
                 widget.detail.postContent[index].content,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.right,
               ),
               new Text(
                 widget.detail.postContent[index].note,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.left,
               ),
               
             ],

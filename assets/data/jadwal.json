@@ -1,0 +1,34 @@
+{
+    "data": {
+        "Fajr": "04:37",
+        "Sunrise": "05:57",
+        "Dhuhr": "11:51",
+        "Asr": "15:13",
+        "Sunset": "17:44",
+        "Maghrib": "17:44",
+        "Isha": "18:57",
+        "SepertigaMalam": "21:48",
+        "TengahMalam": "23:51",
+        "DuapertigaMalam": "01:52",
+        "method": [
+            "Egypt",
+            "Egyptian General Authority of Survey",
+            "Fajr: 19.5\u00b0 - Isha'a: 17.5\u00b0"
+        ]
+    },
+    "time": {
+        "date": "2019-06-04",
+        "time": "09:03:33",
+        "timezone": "Asia\/Jakarta",
+        "offset": 7
+    },
+    "location": {
+        "latitude": "-6.1744651000",
+        "longitude": "106.8227450000"
+    },
+    "debug": {
+        "sunrise": "05:55",
+        "sunset": "17:47"
+    },
+    "status": "OK"
+}
