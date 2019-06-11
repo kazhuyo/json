@@ -14,7 +14,7 @@
             "name": "Tahajjud",
             "time": "00:53",
             "image": "Image 1",
-            "notify": true
+            "notify": false
         },
         {
             "id": 2,
