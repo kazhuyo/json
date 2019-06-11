@@ -1,20 +1,15 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:intl/intl.dart';
-import 'model/jadwal_sholat_model.dart';
+import 'package:json/model/jadwal_sholat_model.dart';
 
-Future<String> _loadJadwalAsset() async {
-  return await rootBundle.loadString('assets/data/jadwal_sholat.json');
-}
+JadwalModel model;
 
-Future<JadwalModel> loadJadwal() async {
-  String jsonString = await _loadJadwalAsset();
-  final jsonResponse = json.decode(jsonString);
-  return new JadwalModel.fromJson(jsonResponse);
+loadJson() async {
+  var str = await rootBundle.loadString('assets/data/jadwal_sholat.json');
+  model = JadwalModel.fromJson(jsonDecode(str));
 }
 
 class ScheduleNotif extends StatefulWidget {
@@ -25,7 +20,6 @@ class ScheduleNotif extends StatefulWidget {
 
 class _ScheduleNotifState extends State<ScheduleNotif> {
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-  bool _isNotify = true;
 
   @override
   void initState() {
@@ -36,6 +30,7 @@ class _ScheduleNotifState extends State<ScheduleNotif> {
     var initSettings = new InitializationSettings(android, ios);
     flutterLocalNotificationsPlugin.initialize(initSettings,
         onSelectNotification: onSelectNotification);
+    print(model);
   }
 
   Future<void> onSelectNotification(String payload) async {
@@ -53,140 +48,72 @@ class _ScheduleNotifState extends State<ScheduleNotif> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Test Schedule"),
+        title: Text("Test Load JSON"),
       ),
-      body: Container(
-        child: FutureBuilder<JadwalModel>(
-          future: loadJadwal(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              DateFormat timeFormat;
-              timeFormat = new DateFormat('H:m');
-
-              var fajrTime = snapshot.data.jadwal[2].time;
-              var dhuhrTime = snapshot.data.jadwal[4].time;
-              var asrTime = snapshot.data.jadwal[5].time;
-              var magribTime = snapshot.data.jadwal[6].time;
-              var ishaTime = snapshot.data.jadwal[7].time;
-
-              DateTime now = DateTime.now();
-              now = new DateTime(now.year, now.month, now.day, now.hour,
-                  now.minute, now.second, now.millisecond);
-
-              DateTime fajr = timeFormat.parse(fajrTime);
-              fajr = new DateTime(
-                  now.year, now.month, now.day, fajr.hour, fajr.minute);
-
-              DateTime dhuhr = timeFormat.parse(dhuhrTime);
-              dhuhr = new DateTime(
-                  now.year, now.month, now.day, dhuhr.hour, dhuhr.minute);
-
-              DateTime asr = timeFormat.parse(asrTime);
-              asr = new DateTime(
-                  now.year, now.month, now.day, asr.hour, asr.minute);
-
-              DateTime magrib = timeFormat.parse(magribTime);
-              magrib = new DateTime(
-                  now.year, now.month, now.day, magrib.hour, magrib.minute);
-
-              DateTime isha = timeFormat.parse(ishaTime);
-              isha = new DateTime(
-                  now.year, now.month, now.day, isha.hour, isha.minute);
-
-              String _toTwoDigitString(int value) {
-                return value.toString().padLeft(2, '0');
-              }
-
-              Future<void> _showDailyFajr() async {
-                var time = Time(fajr.hour, fajr.minute, 0);
-                var androidPlatformChannelSpecifics =
-                    AndroidNotificationDetails(
-                        'repeatDailyAtTime channel id',
-                        'repeatDailyAtTime channel name',
-                        'repeatDailyAtTime description');
-                var iOSPlatformChannelSpecifics = IOSNotificationDetails();
-                var platformChannelSpecifics = NotificationDetails(
-                    androidPlatformChannelSpecifics,
-                    iOSPlatformChannelSpecifics);
-                await flutterLocalNotificationsPlugin.showDailyAtTime(
-                    0,
-                    'show daily title',
-                    'Daily notification shown at approximately ${_toTwoDigitString(time.hour)}:${_toTwoDigitString(time.minute)}:${_toTwoDigitString(time.second)}',
-                    time,
-                    platformChannelSpecifics);
-              }
-
-              void _toggleNotify() {
-                setState(() {
-                  if (_isNotify) {
-                    print("false");
-                    _isNotify = false;
-                  } else {
-                    print("true");
-                    _isNotify = true;
-                  }
-                });
-              }
-
-              // return Text("data");
-              return Container(
-                child: ListView.builder(
-                  physics: ClampingScrollPhysics(),
-                  itemCount: snapshot.data.jadwal.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.only(top: 5, left: 17),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              // Text(snapshot.data.jadwal[index].name ),
-                              Row(
-                                children: <Widget>[
-                                  Text(snapshot.data.jadwal[index].time),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 0),
-                                  ),
-                                  // TODO : Trigger boolean setstate & initstate to alarm icons.
-                                  //  onPressed should running setstate with condition :
-                                  //  if true trigger method ScheduledNotification using channel = ID jadwal sholat, title = Jadwal Sholat, body = Memasuki Waktu Sholat "${snapshot.data.jadwal[index].name}".
-                                  //  if false then run method flutterLocalNotificationsPlugin.cancel(ID Jadwal Sholat)
-                                  IconButton(
-                                    icon: _isNotify
-                                        ? Icon(Icons.alarm)
-                                        : Icon(Icons.alarm_off),
-                                    onPressed: _toggleNotify,
-                                    // onPressed: () =>
-                                    //     setState(() => _isNotify = !_isNotify),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: MediaQuery.of(context).size.width * 0.05,
-                              right: MediaQuery.of(context).size.width * 0.05),
-                          child: new Divider(),
-                        ),
-                      ],
-                    );
+      body: FutureBuilder(
+        future: loadJson(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: snapshot.data.jadwal.length,
+              itemBuilder: (BuildContext context, int index) {
+                Jadwal jadwal = snapshot.data.jadwal[index];
+                return new GestureDetector(
+                  onTap: () {
+                    print('on tap clicked on ' + jadwal.name);
                   },
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            return Container();
-          },
-        ),
+                  child: Container(
+                      height: 45.0,
+                      decoration: BoxDecoration(),
+                      child: new Column(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                            child: new Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                new Container(
+                                  child: Text(
+                                    jadwal.name,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(fontSize: 10.0),
+                                    maxLines: 1,
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10.0),
+                                          topRight: Radius.circular(10.0))),
+                                ),
+                                new GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      jadwal.notify = !jadwal.notify;
+                                    });
+                                    print(
+                                        'clicked on ${jadwal.name}, notified=${jadwal.notify}');
+                                  },
+                                  child: new Container(
+                                      margin: const EdgeInsets.all(0.0),
+                                      child: new Icon(
+                                        jadwal.notify
+                                            ? Icons.alarm
+                                            : Icons.alarm_off,
+                                        color: Colors.black,
+                                        size: 30.0,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )),
+                );
+              },
+            );
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          } return CircularProgressIndicator();
+        },
       ),
     );
   }

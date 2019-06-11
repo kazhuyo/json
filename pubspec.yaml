@@ -31,6 +31,7 @@ dependencies:
   path_provider: ^0.4.1
   rxdart: ^0.19.0
   feather_icons_flutter: ^4.7.4
+  english_words: ^3.1.0
 
   
   # The following adds the Cupertino Icons font to your application.

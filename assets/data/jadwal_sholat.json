@@ -13,49 +13,57 @@
             "id": 1,
             "name": "Tahajjud",
             "time": "00:53",
-            "image": "Image 1"
+            "image": "Image 1",
+            "notify": true
         },
         {
             "id": 2,
             "name": "Imsak",
             "time": "04:25",
-            "image": "Image 2"
+            "image": "Image 2",
+            "notify": true
         },
         {
             "id": 3,
             "name": "Fajr",
             "time": "04:37",
-            "image": "Image 3"
+            "image": "Image 3",
+            "notify": true
         },
         {
             "id": 4,
             "name": "Sunrise",
             "time": "05:55",
-            "image": "Image 4"
+            "image": "Image 4",
+            "notify": true
         },
         {
             "id": 5,
             "name": "Dhuhr",
             "time": "11:51",
-            "image": "Image 5"
+            "image": "Image 5",
+            "notify": true
         },
         {
             "id": 6,
             "name": "Asr",
             "time": "15:13",
-            "image": "Image 6"
+            "image": "Image 6",
+            "notify": true
         },
         {
             "id": 7,
             "name": "Maghrib",
             "time": "17:44",
-            "image": "Image 7"
+            "image": "Image 7",
+            "notify": true
         },
         {
             "id": 8,
             "name": "Isha",
             "time": "18:57",
-            "image": "Image 8"
+            "image": "Image 8",
+            "notify": true
         }
     ],
     "location": {

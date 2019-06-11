@@ -2,16 +2,29 @@ class JadwalModel {
   String response;
   String timezone;
   Debug debug;
+  String date;
+  String time;
+  String hijriyah;
   List<Jadwal> jadwal;
   Location location;
 
   JadwalModel(
-      {this.response, this.timezone, this.debug, this.jadwal, this.location});
+      {this.response,
+      this.timezone,
+      this.debug,
+      this.date,
+      this.time,
+      this.hijriyah,
+      this.jadwal,
+      this.location});
 
   JadwalModel.fromJson(Map<String, dynamic> json) {
     response = json['response'];
     timezone = json['timezone'];
     debug = json['debug'] != null ? new Debug.fromJson(json['debug']) : null;
+    date = json['date'];
+    time = json['time'];
+    hijriyah = json['hijriyah'];
     if (json['jadwal'] != null) {
       jadwal = new List<Jadwal>();
       json['jadwal'].forEach((v) {
@@ -30,6 +43,9 @@ class JadwalModel {
     if (this.debug != null) {
       data['debug'] = this.debug.toJson();
     }
+    data['date'] = this.date;
+    data['time'] = this.time;
+    data['hijriyah'] = this.hijriyah;
     if (this.jadwal != null) {
       data['jadwal'] = this.jadwal.map((v) => v.toJson()).toList();
     }
@@ -64,14 +80,16 @@ class Jadwal {
   String name;
   String time;
   String image;
+  bool notify;
 
-  Jadwal({this.id, this.name, this.time, this.image});
+  Jadwal({this.id, this.name, this.time, this.image, this.notify});
 
   Jadwal.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     time = json['time'];
     image = json['image'];
+    notify = json['notify'];
   }
 
   Map<String, dynamic> toJson() {
@@ -80,6 +98,7 @@ class Jadwal {
     data['name'] = this.name;
     data['time'] = this.time;
     data['image'] = this.image;
+    data['notify'] = this.notify;
     return data;
   }
 }
